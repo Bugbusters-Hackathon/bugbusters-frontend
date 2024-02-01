@@ -1,3 +1,69 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Luckiest+Guy&display=swap');
+
+/* Global styles */
+h1 {
+    font-family: "Luckiest Guy", cursive;
+}
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+/* Header */
+.logo {
+    font-family: "Luckiest Guy", cursive;
+    font-size: 2rem;
+}
+
+.header {
+    justify-content: space-between;
+}
+
+
+
+.wrapper {
+    min-height: 100vh;
+}
+
+/* Home Page */
+.home-page {
+    flex: 2;
+    
+}
+
+.monster-data {
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    padding-bottom: 2rem;
+}
+
+.offer-data {
+    text-align: right;
+}
+
+.btn-refresh {
+    justify-content: center;
+}
+
+.refresh-icon {
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.refresh-icon img {
+    display: block;
+    height: 25px;
+}

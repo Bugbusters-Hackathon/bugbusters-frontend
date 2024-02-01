@@ -1,9 +1,13 @@
+import IconRefresh from '../ui/IconRefresh';
+import Logo from './Logo';
+
 const Header = () => {
 
 
   return (
-    <header>
-
+    <header className='header flex'>
+        <Logo />
+        <IconRefresh />
     </header>
   );
 };
