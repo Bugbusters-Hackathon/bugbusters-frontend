@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <Layout>
       <main className="home-page">
-        {loading && <div className="loading"><p>Loading ...</p></div>}
+        {loading && <div className="loading"><p>Génération de votre monstre ...</p></div>}
         {error && <p>{error}</p>}
         {!loading && !error && (
           <div className="monster-data flex">
