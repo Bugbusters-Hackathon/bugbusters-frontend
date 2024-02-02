@@ -124,6 +124,7 @@ const Monster = ({ data }) => {
       const newCharacter = generateRandomCharacter(categories);
       setCharacter(newCharacter);
       setCharacterId((prevId) => prevId + 1);
+      setAnimation(true);
     }
   }, [spritesData, xp]);
 

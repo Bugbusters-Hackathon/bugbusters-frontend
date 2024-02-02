@@ -29,10 +29,6 @@ const Home = () => {
     fetchData();
   }, [refresh]);
 
-
-
-
-  
   return (
     <Layout>
       <main className="home-page">

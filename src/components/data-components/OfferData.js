@@ -1,4 +1,18 @@
-const OfferData = ({ data }) => {    
+const OfferData = ({ data }) => { 
+    const getExperienceText = (experienceLevel) => {
+        switch (experienceLevel) {
+            case 'D':
+                return 'Débutant';
+            case 'E':
+                return 'Expérimenté';
+            case 'S':
+                return 'Sénior';
+            default:
+                return 'Niveau inconnu';
+        }
+    };
+    const experienceText = getExperienceText(data.experienceExige);
+    
     const formattedDate = new Intl.DateTimeFormat('fr-FR', {
         year: 'numeric',
         month: 'long',
@@ -8,6 +22,7 @@ const OfferData = ({ data }) => {
         timeZone: 'UTC'
     }).format(new Date(data.dateCreation));
 
+
     return (
         <div className="offer-data">
             <div className="">
@@ -16,7 +31,7 @@ const OfferData = ({ data }) => {
             </div>
             <div>
                 <h3>L’expérience exigée : </h3>
-                <p>{data.experienceExige}</p>
+                <p>{experienceText}</p>
             </div>
             <div>
                 <h3>Date de création de l’annonce : </h3>

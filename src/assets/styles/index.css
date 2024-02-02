@@ -58,6 +58,9 @@ h1 {
     justify-content: space-around;
     height: 100%;
     padding-bottom: 2rem;
+    max-width: 1500px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .offer-data {
