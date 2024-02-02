@@ -40,7 +40,7 @@ const Home = () => {
         {error && <p>{error}</p>}
         {!loading && !error && (
           <div className="monster-data flex">
-            <Monster data={apiData && apiData[0]} />
+            <Monster data={apiData && apiData[0].experienceExige} />
             <OfferData data={apiData && apiData[0]} />
           </div>
         )}
