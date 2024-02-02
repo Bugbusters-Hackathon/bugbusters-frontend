@@ -1,34 +1,37 @@
-// Home.js
 import React, { useEffect, useState } from "react";
-import Monster from "../../components/data-components/Monster";
-import OfferData from "../../components/data-components/OfferData";
-import Layout from "../../components/layout/Layout";
-import BtnRefresh from "../../components/ui/BtnRefresh";
-import { getData } from "../../services/api/getData";
-import { useRefresh } from "../../services/context/RefreshContext";
+import MonsterRender from "../../components/MonsterRender.js";
 
-const Home = () => {
-  const [apiData, setApiData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const refresh = useRefresh();
+const Monster = () => {
+  const [spritesData, setSpritesData] = useState([]);
+  const [character, setCharacter] = useState(null);
+  const [doubleEyes, setDoubleEyes] = useState(null);
+  const [characterId, setCharacterId] = useState(0);
+  // Modifier pour faire référence au données API
+  const [xp, setXp] = useState("Expérimenté");
+  // Actuellement si userXp = Xp de l'offre, à voir
+  const [animation, setAnimation] = useState(false);
 
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const data = await getData();
-      setApiData(data);
-    } catch (error) {
-      setError(error.message || 'Error fetching data');
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  //**************************************************************! CHARGEMENT DES DONNÉES DES SPRITES
+  // Charge les données de spritesheet et stocke dans spritesData. Conversion du xml
   useEffect(() => {
-    fetchData();
-  }, [refresh]);
+    fetch("/spritesheet_default.xml")
+      .then((response) => response.text())
+      .then((data) => {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data, "text/xml");
 
+        const json = Array.from(xmlDoc.getElementsByTagName("SubTexture")).map(
+          (subTexture) => ({
+            name: subTexture.getAttribute("name"),
+            x: parseInt(subTexture.getAttribute("x"), 10),
+            y: parseInt(subTexture.getAttribute("y"), 10),
+            width: parseInt(subTexture.getAttribute("width"), 10),
+            height: parseInt(subTexture.getAttribute("height"), 10),
+          })
+        );
+        setSpritesData(json);
+      });
+  }, []);
 
   //**************************************************************! FONCTIONS UTILITAIRES
   // Organise les sprites en catégories basées sur leurs noms.
@@ -136,24 +139,28 @@ const Home = () => {
     }
   };
 
-  //**************************************************************! Rendu
   return (
-    <Layout>
-      <main className="home-page">
-        {loading && <div className="loading"><p>Loading ...</p></div>}
-        {error && <p>{error}</p>}
-        {!loading && !error && (
-          <div className="monster-data flex">
-            <Monster data={apiData && apiData[0]} />
-            <OfferData data={apiData && apiData[0]} />
-          </div>
+    <>
+      <div className="flex">
+        {spritesData && character && doubleEyes !== null && (
+          <MonsterRender
+            character={character}
+            doubleEyes={doubleEyes}
+            characterId={characterId}
+            animation={animation}
+          />
         )}
-        <div className="btn-refresh flex">
-          <BtnRefresh />
+        <div>
+          <button
+            onClick={createNewCharacter}
+            className="rounded-lg bg-violet-700 p-3 text-white"
+          >
+            Générer un nouveau monstre
+          </button>
         </div>
-      </main>
-    </Layout>
+      </div>
+    </>
   );
 };
 
-export default Home;
+export default Monster;
