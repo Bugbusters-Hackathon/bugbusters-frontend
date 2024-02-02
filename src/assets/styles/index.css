@@ -6,10 +6,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Luckiest+Guy&display=swap');
 
 /* Global styles */
-h1 {
-    font-family: "Luckiest Guy", cursive;
+html {
+    overflow-x: hidden;
 }
 
+h1 {
+    font-family: Roboto, sans-serif;
+}
 
 .wrapper {
     display: flex;
@@ -24,20 +27,30 @@ h1 {
     font-size: 2rem;
 }
 
-.header {
-    justify-content: space-between;
+.logo-span {
+    color: #6B21A8;
+    font-size: 2.2rem;
 }
 
+
+.header {
+    justify-content: space-between;
+    padding: 0 2rem;
+}
 
 
 .wrapper {
     min-height: 100vh;
+    background-color: #6b21a804;
 }
 
 /* Home Page */
 .home-page {
     flex: 2;
-    
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .monster-data {
@@ -49,6 +62,28 @@ h1 {
 
 .offer-data {
     text-align: right;
+    border: solid 2px #6B21A8;
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0px 0px 15px 0px #6b21a87d;
+    max-width: 600px;
+    backdrop-filter: blur(10px);
+}
+
+.offer-data div {
+    padding-bottom: 2rem;
+}
+
+.offer-data h3 {
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.offer-data p {
+    font-family: Roboto, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .btn-refresh {
@@ -66,4 +101,32 @@ h1 {
 .refresh-icon img {
     display: block;
     height: 25px;
+}
+
+
+.loading {
+    position: absolute;
+    font-family: Roboto, sans-serif;
+    font-size: 3rem;
+    backdrop-filter: blur(10px);
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 640px) {
+    .monster-data {
+        flex-direction: column;
+    }
+    .monster-img {
+        padding-bottom: 2rem;
+    }
+    .header {
+        padding: 0;
+    }
 }

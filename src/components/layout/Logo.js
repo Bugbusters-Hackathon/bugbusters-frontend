@@ -1,7 +1,8 @@
 const Logo = () => {
     return (
         <div className="logo">
-            JobMonster
+            <span>Job</span>
+            <span className="logo-span">Monster</span>
         </div>
     );
 };

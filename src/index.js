@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './assets/styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { RefreshProvider } from './services/context/RefreshContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+     <RefreshProvider>
+      <App />
+     </RefreshProvider>
   </React.StrictMode>
 );
 
