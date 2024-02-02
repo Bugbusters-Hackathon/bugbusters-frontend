@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import MonsterRender from "../MonsterRender";
+import MonsterRender from "../../components/MonsterRender.js";
 
-const Monster = ({ data }) => {
+const Monster = () => {
   const [spritesData, setSpritesData] = useState([]);
   const [character, setCharacter] = useState(null);
   const [doubleEyes, setDoubleEyes] = useState(null);
@@ -51,17 +51,17 @@ const Monster = ({ data }) => {
       const { name, width } = sprite;
       if (name.includes("body")) {
         switch (xp) {
-          case "D":
+          case "Débutant":
             if (name.includes("blue")) {
               categories.body.push(sprite);
             }
             break;
-          case "E":
+          case "Expérimenté":
             if (name.includes("yellow")) {
               categories.body.push(sprite);
             }
             break;
-          case "S":
+          case "Sénior":
             if (name.includes("green")) {
               categories.body.push(sprite);
             }
@@ -118,14 +118,26 @@ const Monster = ({ data }) => {
   // Génère un personnage aléatoire une fois les données de sprites disponibles.
   // Appelle categorizeSprites pour organiser les sprites, puis génère un personnage.
   useEffect(() => {
-    if (spritesData && spritesData.length > 0 && data) {
-      setXp(data);
+    if (spritesData && spritesData.length > 0) {
       const categories = categorizeSprites(spritesData, xp);
       const newCharacter = generateRandomCharacter(categories);
       setCharacter(newCharacter);
       setCharacterId((prevId) => prevId + 1);
     }
   }, [spritesData, xp]);
+
+  // Fonction pour générer un personnage aléatoire
+  const createNewCharacter = () => {
+    if (spritesData && spritesData.length > 0) {
+      const xpLevels = ["Débutant", "Expérimenté", "Sénior"];
+      const randomXp = xpLevels[Math.floor(Math.random() * xpLevels.length)];
+      setXp(randomXp);
+      const categories = categorizeSprites(spritesData, randomXp);
+      const newCharacter = generateRandomCharacter(categories);
+      setCharacter(newCharacter);
+      setCharacterId((prevId) => prevId + 1);
+    }
+  };
 
   return (
     <>
@@ -138,6 +150,14 @@ const Monster = ({ data }) => {
             animation={animation}
           />
         )}
+        <div>
+          <button
+            onClick={createNewCharacter}
+            className="rounded-lg bg-violet-700 p-3 text-white"
+          >
+            Générer un nouveau monstre
+          </button>
+        </div>
       </div>
     </>
   );
