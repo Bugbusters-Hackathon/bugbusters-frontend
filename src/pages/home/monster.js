@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../../components/layout/Layout";
 import MonsterRender from "../../components/MonsterRender.js";
 
-const Home = () => {
+const Monster = () => {
   const [spritesData, setSpritesData] = useState([]);
   const [character, setCharacter] = useState(null);
   const [doubleEyes, setDoubleEyes] = useState(null);
@@ -140,9 +139,8 @@ const Home = () => {
     }
   };
 
-  //**************************************************************! Rendu
   return (
-    <Layout>
+    <>
       <div className="flex">
         {spritesData && character && doubleEyes !== null && (
           <MonsterRender
@@ -161,9 +159,8 @@ const Home = () => {
           </button>
         </div>
       </div>
-      <div className="">{xp}</div>
-    </Layout>
+    </>
   );
 };
 
-export default Home;
+export default Monster;

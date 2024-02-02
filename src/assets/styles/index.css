@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes waveHand {
+  0% {
+    transform: scaleY(-1) rotate(-15deg); /* Main en l'air */
+  }
+  25% {
+    transform: scaleY(-1) rotate(15deg); /* Saluer */
+  }
+  50% {
+    transform: scaleY(-1) rotate(-15deg); /* Saluer */
+  }
+  75% {
+    transform: scaleY(-1) rotate(0deg); /* Saluer */
+  }
+  100% {
+    transform: rotate(0deg); /* Rebaisser la main */
+  }
+}
+
+@keyframes breathing {
+  0%, 100% {
+    transform: translateY(0); /* Position initiale */
+  }
+  50% {
+    transform: translateY(-4px); /* Légèrement en haut, ajustez la valeur si nécessaire */
+  }
+}
+
